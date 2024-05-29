@@ -14,7 +14,7 @@ def generate_launch_description():
     
     port_launch_arg = DeclareLaunchArgument(
         name="port",
-        default_value="/dev/ttyUSB0"
+        default_value="/dev/ttyACM0"
     )
     res.append(port_launch_arg)
 
@@ -28,7 +28,7 @@ def generate_launch_description():
         "model",
         default_value=os.path.join(
             get_package_share_directory("mycobot_description"),
-            "urdf/320_urdf/mycobot_pro_320.urdf"
+            "urdf/mycobot_320_m5_2022/mycobot_320_m5_2022.urdf"
         )
     )
     res.append(model_launch_arg)
