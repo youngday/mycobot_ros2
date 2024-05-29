@@ -31,6 +31,10 @@ setup(
         ('share/' + package_name + '/urdf'+'/ultraArm_p340', glob("urdf/ultraArm_p340/*")),
         ('share/' + package_name + '/urdf'+'/mycobot_280_x3pi', glob("urdf/mycobot_280_x3pi/*")),
         ('share/' + package_name + '/urdf'+'/myarm_300_pi', glob("urdf/myarm_300_pi/*")),
+        
+        ('share/' + package_name + '/urdf'+'/myarm_c650', glob("urdf/myarm_c650/*")),
+        ('share/' + package_name + '/urdf'+'/myarm_m750', glob("urdf/myarm_m750/*")),
+        
         ('share/' + package_name + '/urdf'+'/mycobot_pro_630', glob("urdf/mycobot_pro_630/*")),
 
 
