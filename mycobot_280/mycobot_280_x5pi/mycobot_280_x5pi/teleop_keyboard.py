@@ -90,7 +90,7 @@ class Raw(object):
 
 class TeleopKeyboard:
     def __init__(self):
-        self.mc = MyCobot280('/dev/ttyS3', 1000000)
+        self.mc = MyCobot280('/dev/ttyS1', 1000000)
         time.sleep(0.05)
         self.mc.set_free_mode(1)
         time.sleep(0.05)

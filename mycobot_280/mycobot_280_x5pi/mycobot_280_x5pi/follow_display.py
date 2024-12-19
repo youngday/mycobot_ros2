@@ -2,7 +2,7 @@ import rclpy
 import time
 import os
 import fcntl
-from pymycobot.mycobot import MyCobot
+from pymycobot.mycobot280 import MyCobot280
 from rclpy.node import Node
 from sensor_msgs.msg import JointState
 from std_msgs.msg import Header
@@ -51,14 +51,14 @@ def release(lock_file_fd):
 class Talker(Node):
     def __init__(self):
         super().__init__("follow_display")
-        self.declare_parameter('port', '/dev/ttyS3')
+        self.declare_parameter('port', '/dev/ttyS1')
         self.declare_parameter('baud', 1000000)
    
         port = self.get_parameter("port").get_parameter_value().string_value
         baud = self.get_parameter("baud").get_parameter_value().integer_value
 
         self.get_logger().info("port:%s, baud:%d" % (port, baud))
-        self.mc = MyCobot(port,str(baud))
+        self.mc = MyCobot280(port,str(baud))
         if self.mc:
             lock = acquire("/tmp/mycobot_lock")
             self.mc.release_all_servos()
