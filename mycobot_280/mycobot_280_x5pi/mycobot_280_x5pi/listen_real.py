@@ -12,7 +12,11 @@ from std_msgs.msg import Header
 # Avoid serial port conflicts and need to be locked
 def acquire(lock_file):
     open_mode = os.O_RDWR | os.O_CREAT | os.O_TRUNC
-    fd = os.open(lock_file, open_mode)
+    try:
+        fd = os.open(lock_file, open_mode)
+    except OSError as e:
+        print(f"Failed to open lock file {lock_file}: {e}")
+        return None
 
     pid = os.getpid()
     lock_file_fd = None
@@ -27,25 +31,29 @@ def acquire(lock_file):
             # when timeout is reached.
             fcntl.flock(fd, fcntl.LOCK_EX | fcntl.LOCK_NB)
         except (IOError, OSError):
+            time.sleep(1)
             pass
         else:
             lock_file_fd = fd
+            # print(f"Lock acquired by PID: {pid}")
             break
 
         # print('pid waiting for lock:%d'% pid)
-
-        time.sleep(1.0)
         current_time = time.time()
     if lock_file_fd is None:
+        print(f"Failed to acquire lock after {timeout} seconds")
         os.close(fd)
     return lock_file_fd
 
 
 def release(lock_file_fd):
     # Do not remove the lockfile:
-    fcntl.flock(lock_file_fd, fcntl.LOCK_UN)
-    os.close(lock_file_fd)
-    return None
+    try:
+        fcntl.flock(lock_file_fd, fcntl.LOCK_UN)
+        os.close(lock_file_fd)
+        # print("Lock released successfully")
+    except OSError as e:
+        print(f"Failed to release lock: {e}")
 
 
 class Talker(Node):
