@@ -13,7 +13,7 @@ class Window:
     def __init__(self, handle):
         self.mc = MyCobot("/dev/ttyS3", 1000000)
         time.sleep(0.05)
-        self.mc.set_free_mode(1)
+        self.mc.set_fresh_mode(1)
         time.sleep(0.05)
         
         self.win = handle
