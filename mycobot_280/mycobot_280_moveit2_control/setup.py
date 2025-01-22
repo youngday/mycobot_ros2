@@ -49,6 +49,7 @@ setup(
     entry_points={
         'console_scripts': [
             'sync_plan = mycobot_280_moveit2_control.sync_plan:main',
+            'sync_plan_arduino = mycobot_280_moveit2_control.sync_plan_arduino:main',
         ],
     },
 )
