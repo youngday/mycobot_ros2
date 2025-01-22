@@ -91,6 +91,10 @@ $ sudo echo 'source ~/colcon_ws/install/setup.bash' >> ~/.bashrc
 
 ![280 x3pi](./demo_img/280pi/280_pi.png)
 
+[mycobot 280 x5pi](./mycobot_description/urdf/mycobot_280_x5pi/mycobot_280_x5pi.urdf)
+
+![280 x5pi](./demo_img/280pi/280_pi.png)
+
 [mechArm 270 m5](./mycobot_description/urdf/mecharm_270_m5/mecharm_270_m5.urdf)
 
 ![270 m5](./demo_img/270m5/270m5.png)
